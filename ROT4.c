@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//Bibliotecas necessarias para funcionamento
 #include "../../ECUAL/I2C_LCD/I2C_LCD.h"
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -32,6 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//Definicção da biblioteca I2C deepblue, possivelmente inutil
 #define MyI2C_LCD I2C_LCD_1
 /* USER CODE END PD */
 
@@ -65,6 +67,7 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//Variaveis de codigo
 int i=0;
 int a=1425;
 int menu=0;
@@ -113,6 +116,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim3);
 
+	//Zera os pinos B 8-12
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12, 0);
 
   /* USER CODE END 2 */
@@ -137,6 +141,7 @@ int main(void)
 
 	  if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0)==0)
 	  {
+		  //Aumenta o contador, o limitando em 8550, e usta TIM3->ARR para definir o ARR do TIM3 como a
 		  a = a+1425;
 		  if (a>=8550){a=8550;}
 		  TIM3->ARR = a;
@@ -144,6 +149,7 @@ int main(void)
 
 	  if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1)==0)
 	  	  {
+			//Diminui o contador, o limitando em 1425, e usta TIM3->ARR para definir o ARR do TIM3 como a
 	  		  a = a-1425;
 	  		  if (a<=0){a=1425;}
 	  		  TIM3->ARR = a;
